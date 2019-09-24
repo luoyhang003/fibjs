@@ -72,27 +72,32 @@ before_deploy:
     fi
     fi
   - echo "$TRAVIS_TAG" "$GIT_COMMIT_SHORTCUTS"
+  - export GITHUB_DEPLOY_REPO=$TRAVIS_REPO_SLUG
+  - if [[ -z $GITHUB_SECURE_TOKEN ]]; then
+      export GITHUB_DEPLOY_REPO=fibjs/fibjs;
+      export GITHUB_SECURE_TOKEN=e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=;
+    fi
 deploy:
   - provider: releases
     api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
+      secure: $GITHUB_SECURE_TOKEN
     file_glob: true
     file: ${TRAVIS_TAG}/*
     skip_cleanup: true
     overwrite: true
     on:
       tags: true
-      repo: fibjs/fibjs
+      repo: $GITHUB_DEPLOY_REPO
   - provider: releases
     name: beta
     body: Automated release from Travis CI on beta (${TRAVIS_COMMIT})
     prerelease: true
     api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
+      secure: $GITHUB_SECURE_TOKEN
     file_glob: true
     file: ${TRAVIS_TAG}/*
     skip_cleanup: true
     overwrite: true
     on:
       branch: beta
-      repo: fibjs/fibjs
+      repo: $GITHUB_DEPLOY_REPO
