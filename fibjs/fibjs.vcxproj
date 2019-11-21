@@ -26,6 +26,7 @@
     <ClInclude Include="include\BufferedStream.h" />
     <ClInclude Include="include\Chain.h" />
     <ClInclude Include="include\Cipher.h" />
+    <ClInclude Include="include\Ciphertext.h" />
     <ClInclude Include="include\ClassInfo.h" />
     <ClInclude Include="include\Condition.h" />
     <ClInclude Include="include\DBField.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="include\HeapGraphNode.h" />
     <ClInclude Include="include\HeapProxy.h" />
     <ClInclude Include="include\HeapSnapshot.h" />
+    <ClInclude Include="include\HEKey.h" />
     <ClInclude Include="include\HttpClient.h" />
     <ClInclude Include="include\HttpCollection.h" />
     <ClInclude Include="include\HttpCookie.h" />
@@ -131,6 +133,7 @@
     <ClInclude Include="include\ifs\BufferedStream.h" />
     <ClInclude Include="include\ifs\Chain.h" />
     <ClInclude Include="include\ifs\Cipher.h" />
+    <ClInclude Include="include\ifs\Ciphertext.h" />
     <ClInclude Include="include\ifs\Condition.h" />
     <ClInclude Include="include\ifs\DbConnection.h" />
     <ClInclude Include="include\ifs\DgramSocket.h" />
@@ -228,6 +231,8 @@
     <ClInclude Include="include\ifs\global.h" />
     <ClInclude Include="include\ifs\gui.h" />
     <ClInclude Include="include\ifs\hash.h" />
+    <ClInclude Include="include\ifs\HEKey.h" />
+    <ClInclude Include="include\ifs\he.h" />
     <ClInclude Include="include\ifs\hex.h" />
     <ClInclude Include="include\ifs\http.h" />
     <ClInclude Include="include\ifs\iconv.h" />
@@ -353,6 +358,9 @@
     <ClCompile Include="src\gui\other\gui.cpp" />
     <ClCompile Include="src\gui\windows\WebView.cpp" />
     <ClCompile Include="src\gui\windows\script\console_js.cpp" />
+    <ClCompile Include="src\he\Ciphertext.cpp" />
+    <ClCompile Include="src\he\he.cpp" />
+    <ClCompile Include="src\he\HEKey.cpp" />
     <ClCompile Include="src\http\HttpClient.cpp" />
     <ClCompile Include="src\http\HttpCollection.cpp" />
     <ClCompile Include="src\http\HttpCookie.cpp" />
@@ -531,9 +539,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;DEBUG;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;$(SolutionDir)vender/seal;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4091;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -554,7 +563,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;DEBUG;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;$(SolutionDir)vender/seal;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4091;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -577,7 +587,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;$(SolutionDir)vender/seal;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4091;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -602,7 +613,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)vender;$(SolutionDir)vender/v8;$(SolutionDir)vender/v8/include;$(SolutionDir)vender/mbedtls;$(SolutionDir)vender/zlib/include;$(SolutionDir)vender/seal;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>

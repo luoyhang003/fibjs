@@ -1,0 +1,11 @@
+
+module he
+{
+    const BFV = 1;
+
+    const CKKS = 2;
+
+    static HEKey new HEKey();
+
+    static Ciphertext new Ciphertext();
+};

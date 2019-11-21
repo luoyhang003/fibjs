@@ -1,0 +1,29 @@
+
+interface Ciphertext : object
+{
+    Ciphertext();
+
+    readonly Buffer encrypted_data;
+
+    loadData(Buffer buf);
+
+    loadKey(HEKey key);
+
+    Ciphertext add(Ciphertext cipher_number);
+
+    Ciphertext add(Number number);
+
+    Ciphertext sub(Ciphertext cipher_number);
+    
+    Ciphertext sub(Number number);
+
+    Ciphertext multiply(Ciphertext cipher_number);
+    
+    Ciphertext multiply(Number number);
+
+    Ciphertext negate();
+
+    Ciphertext square();
+
+    Ciphertext relinearize();
+};

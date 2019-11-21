@@ -1,0 +1,29 @@
+
+interface HEKey : object
+{
+    HEKey();
+
+    HEKey(Integer scheme_type = 1, Integer poly_modulus_degree = 4096, Integer plain_modulus = 1024);
+
+    HEKey(Integer scheme_type = 2, Integer poly_modulus_degree = 4096, Integer scale = 60, Array coeff_modulus);
+
+    readonly String scheme_type;
+
+    readonly Integer poly_modulus_degree;
+
+    readonly Integer plain_modulus;
+
+    readonly Integer scale;
+
+    readonly Array coeff_modulus;
+
+    genKey();
+
+    importKey(Buffer priKey);
+
+    Buffer exportKey();
+
+    Ciphertext encrypt(Number number);
+
+    Number decrypt(Ciphertext ciphertext);
+};
