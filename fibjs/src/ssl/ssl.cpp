@@ -251,13 +251,13 @@ result_t ssl_base::loadClientCertFile(exlib::string crtFile, exlib::string keyFi
 
 result_t ssl_base::loadRootCerts()
 {
-    obj_ptr<X509Cert_base> ca = new X509CertProxy(g_ssl.ca());
+    obj_ptr<X509Cert_base> ca = g_ssl.ca();
     return ca->loadRootCerts();
 }
 
 result_t ssl_base::get_ca(obj_ptr<X509Cert_base>& retVal)
 {
-    retVal = new X509CertProxy(g_ssl.ca());
+    retVal = g_ssl.ca();
     return 0;
 }
 

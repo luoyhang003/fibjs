@@ -44,11 +44,12 @@ public:
 
 public:
     static result_t setError(int32_t ret);
-    obj_ptr<X509Cert>& ca()
+    obj_ptr<X509Cert_base>& ca()
     {
-        if (!m_ca)
-            m_ca = new X509Cert();
-        return m_ca;
+        Isolate* _isolate = Isolate::current();
+        if (!_isolate->m_ca)
+            _isolate->m_ca = new X509Cert();
+        return _isolate->m_ca;
     }
 
 public:
