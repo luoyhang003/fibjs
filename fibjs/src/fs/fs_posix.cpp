@@ -15,10 +15,7 @@ namespace fibjs {
 
 class fs_initer {
 public:
-    fs_initer()
-    {
-        ::umask(0);
-    }
+    fs_initer() { }
 } s_fs_initer;
 
 result_t fs_base::truncate(exlib::string path, int32_t len, AsyncEvent* ac)
